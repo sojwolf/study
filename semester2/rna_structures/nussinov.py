@@ -23,10 +23,12 @@
 allowed_base_pairs = ['AU', 'UA', 'GC', 'CG', 'GU', 'UG']
 
 sequence = 'AGGCAAUGCC'
+# sequence = 'GGGAAAUCC'
 sequence_len = len(sequence)
 
 # minimal count of base between
 min_count = 3
+# min_count = 1
 
 # create empty matrix
 matrix = [['']*sequence_len for i in range(sequence_len)]
@@ -74,22 +76,23 @@ def calculate():
         i = 0
         jn = j_start + s
         for j in range(jn, sequence_len):
-            # todo: über Liste der k-values itterieren
-            k = getK(i+min_count, j)
-            if len(k) == 1:
-                print(i, j, k)
-                trivial = matrix[i+1][j]
-                k_value = k[0]+1
+            k_values = getK(i+min_count, j)
+            results = []
+            for k in k_values:
+                trivial = matrix[i + 1][j]
+                results.append(trivial)
 
-                base_paired_value = getBasePairedValue(i, k[0])
+                k_value = k + 1
+
+                base_paired_value = getBasePairedValue(i, k)
                 if k_value < sequence_len:
-                    calc = matrix[i+1][k[0]-1] + matrix[k[0]+1][j] +\
+                    calc = matrix[i+1][k-1] + matrix[k+1][j] +\
                         base_paired_value
                 else:
-                    calc = matrix[i+1][k[0]-1] + 0 + base_paired_value
-                result = max(trivial, calc)
-                matrix[i][j] = result
-                i += 1
+                    calc = matrix[i+1][k-1] + 0 + base_paired_value
+                results.append(calc)
+            matrix[i][j] = max(results)
+            i += 1
         s += 1
         t += 1
 
