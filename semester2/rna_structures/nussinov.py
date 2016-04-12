@@ -1,3 +1,5 @@
+from copy import copy, deepcopy
+
 ###
 #   initialization:
 #       N(i,i) = 0
@@ -22,8 +24,10 @@
 # watson-crick and wobble base pairs
 allowed_base_pairs = ['AU', 'UA', 'GC', 'CG', 'GU', 'UG']
 
-sequence = 'AGGCAAUGCC'
-# sequence = 'GGGAAAUCC'
+#sequence = 'AGGCAAUGCC'
+#sequence = 'GGGAAAUCC'
+sequence = 'GGCAGACUAU'
+#sequence = 'GACUCCGUGGCGCAACGGUAGCGCGUCCGACUCCAGAUCGGAAGGUUGCGUGUUCAAAUCACGUCGGGGUCA'
 sequence_len = len(sequence)
 
 # minimal count of base between
@@ -33,6 +37,7 @@ min_count = 3
 # create empty matrix
 matrix = [['']*sequence_len for i in range(sequence_len)]
 
+result_sequence = [''] * sequence_len
 
 # initialization
 def init():
@@ -99,11 +104,14 @@ def calculate():
 
 def output():
 
+    # copy matrix for output
+    output_matrix = deepcopy(matrix)
+
     # insert sequence as headline and headcolumn for view
-    matrix.insert(0, list(sequence))
+    output_matrix.insert(0, list(sequence))
 
     i = 0
-    for row in matrix:
+    for row in output_matrix:
         if i == 0:
             row.append('')
         else:
@@ -112,10 +120,10 @@ def output():
 
     # insert index numbers as headline and headcolumn for view
     sequence_index = list(range(1, sequence_len+1))
-    matrix.insert(0, sequence_index)
+    output_matrix.insert(0, sequence_index)
 
     i = 0
-    for row in matrix:
+    for row in output_matrix:
         if i < 2:
             row.append('')
         else:
@@ -123,10 +131,54 @@ def output():
         i += 1
 
     # matrix output
-    for row in matrix:
+    for row in output_matrix:
         print("\t".join(map(str, row)) + "\n")
         pass
+
+
+def backTracking():
+
+    j = sequence_len-1
+    for i in range(0, sequence_len-1):
+        if i <= (sequence_len / 2):
+            n_value = matrix[i][j]
+
+            # unpaired case
+            result = matrix[i+1][j]
+
+            if n_value == result:
+                #print(i, j, 'unpaired')
+                result_sequence[i] = '.'
+                if i > 0:
+                    result_sequence[j] = '.'
+                    j -= 1
+                #output_matrix[i][j+2] = '[' + output_matrix[i][j+2] + ']'
+                continue
+
+            # paired cases
+            k_values = getK(i, j)
+            for k in k_values:
+                f_value = getBasePairedValue(i, k)
+                if f_value == 0:
+                    continue
+
+                inner_value = matrix[i+1][k-1]
+                outer_value = 0 if (k+1 > sequence_len-1) else matrix[k+1][j]
+                result = f_value + inner_value + outer_value
+
+                if result != n_value:
+                    continue
+
+                #print(i, j, k, 'paired')
+                result_sequence[i] = '('
+                result_sequence[j] = ')'
+                j -= 1
+                break
+    print(sequence)
+    print(''.join(result_sequence))
+
 
 init()
 calculate()
 output()
+backTracking()
