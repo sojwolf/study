@@ -1,4 +1,4 @@
-from copy import copy, deepcopy
+from copy import deepcopy
 
 ###
 #   initialization:
@@ -24,10 +24,12 @@ from copy import copy, deepcopy
 # watson-crick and wobble base pairs
 allowed_base_pairs = ['AU', 'UA', 'GC', 'CG', 'GU', 'UG']
 
-#sequence = 'AGGCAAUGCC'
-#sequence = 'GGGAAAUCC'
+# sequence = 'AGGCAAUGCC'
+# sequence = 'GGGAAAUCC'
 sequence = 'GGCAGACUAU'
-#sequence = 'GACUCCGUGGCGCAACGGUAGCGCGUCCGACUCCAGAUCGGAAGGUUGCGUGUUCAAAUCACGUCGGGGUCA'
+# sequence = "GACUCCGUGGCGCAACGGUAGCGCGUC"\
+# "CGACUCCAGAUCGGAAGGUUGCGUGUUCAAAUCACGUCGGGGUCA"
+print(sequence)
 sequence_len = len(sequence)
 
 # minimal count of base between
@@ -38,6 +40,7 @@ min_count = 3
 matrix = [['']*sequence_len for i in range(sequence_len)]
 
 result_sequence = [''] * sequence_len
+
 
 # initialization
 def init():
@@ -147,12 +150,11 @@ def backTracking():
             result = matrix[i+1][j]
 
             if n_value == result:
-                #print(i, j, 'unpaired')
                 result_sequence[i] = '.'
                 if i > 0:
                     result_sequence[j] = '.'
                     j -= 1
-                #output_matrix[i][j+2] = '[' + output_matrix[i][j+2] + ']'
+                # output_matrix[i][j+2] = '[' + output_matrix[i][j+2] + ']'
                 continue
 
             # paired cases
@@ -169,7 +171,6 @@ def backTracking():
                 if result != n_value:
                     continue
 
-                #print(i, j, k, 'paired')
                 result_sequence[i] = '('
                 result_sequence[j] = ')'
                 j -= 1
