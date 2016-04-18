@@ -1,0 +1,13 @@
+[run]
+branch = True
+
+[report]
+exclude_lines =
+    if __name__ == .__main__.:
+    pragma: no cover
+omit = 
+    ../test/*
+    */__init__.py
+
+[html]
+directory = ./test_report
