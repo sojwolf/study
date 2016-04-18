@@ -59,14 +59,7 @@ class Nussinov():
                 self._matrix[i+1][i] = 0
 
     def _getK(self, i, j):
-        #return list(range(i+1, j+1))
-        k = list()
-
-        for s in range(i, j+1):
-            if (s > i) & (s <= j):
-                k.append(s)
-
-        return k
+        return list(range(i+1, j+1))
 
     def _getBasePairedValue(self, i, k):
         base_pair = self._sequence[i] + self._sequence[k]
