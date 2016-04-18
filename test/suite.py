@@ -2,7 +2,7 @@ import sys
 import os
 import unittest
 
-script_path = '/home/alex/workspace/study/test'
+script_path = os.path.abspath(__file__)
 sys.path.append(os.path.abspath(script_path))
 import test_semester2.test_rna_structures.nussinov_test
 

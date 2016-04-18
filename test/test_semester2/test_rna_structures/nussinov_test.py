@@ -3,7 +3,7 @@ import unittest
 import os
 import sys
 
-script_path = '/home/alex/workspace/study'
+script_path = os.path.abspath(__file__) + '/../../../..'
 sys.path.append(os.path.abspath(script_path))
 
 from semester2.rna_structures.nussinov import getK, getBasePairedValue, sequence
