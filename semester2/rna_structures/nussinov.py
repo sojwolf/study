@@ -29,7 +29,7 @@ allowed_base_pairs = ['AU', 'UA', 'GC', 'CG', 'GU', 'UG']
 sequence = 'GGCAGACUAU'
 # sequence = "GACUCCGUGGCGCAACGGUAGCGCGUC"\
 # "CGACUCCAGAUCGGAAGGUUGCGUGUUCAAAUCACGUCGGGGUCA"
-print(sequence)
+
 sequence_len = len(sequence)
 
 # minimal count of base between
@@ -178,8 +178,8 @@ def backTracking():
     print(sequence)
     print(''.join(result_sequence))
 
-
-init()
-calculate()
-output()
-backTracking()
+if __name__ == "__main__":
+    init()
+    calculate()
+    output()
+    backTracking()
