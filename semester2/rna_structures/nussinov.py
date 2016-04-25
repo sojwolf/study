@@ -21,6 +21,7 @@ from copy import deepcopy
 #                 ---
 ###
 
+
 class Nussinov():
 
     # watson-crick and wobble base pairs
@@ -165,10 +166,43 @@ class Nussinov():
         print(sequence)
         print(''.join(self._result_sequence))
 
+    def backTrackingNew(self):
+        output = []
+        for i in self._sequence:
+            output.append('-')
+
+        # init -> complete strucuture from 0 to n-1
+        stack = [[0, self._sequence_len-1]]
+
+        while stack != []:
+            current = stack.pop()
+            i = current[0]
+            j = current[1]
+
+            if i > j:
+                continue
+
+            if i == j:
+                output[j] = "."
+                continue
+
+            if self._matrix[i][j] == self._matrix[i+1][j]:
+                output[i] = "."
+                stack.append([i+1,j])
+                continue
+
+            k = i+4
+            while k <= j:
+                base_paired_value = self._getBasePairedValue(i,k)
+                if base_paired_value:
+                    pass
+                k += 1
+
 if __name__ == "__main__":
     # sequence = 'AGGCAAUGCC'
     # sequence = 'GGGAAAUCC'
     sequence = 'GGCAGACUAU'
+    sequence = "AACCCUUUUCCCAA"
     # sequence = "GACUCCGUGGCGCAACGGUAGCGCGUC"\
     # "CGACUCCAGAUCGGAAGGUUGCGUGUUCAAAUCACGUCGGGGUCA"
     nussinov = Nussinov(sequence)
@@ -176,3 +210,4 @@ if __name__ == "__main__":
     nussinov.calculate()
     nussinov.output()
     nussinov.backTracking()
+    nussinov.backTrackingNew()
