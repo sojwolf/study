@@ -3,4 +3,4 @@ test/.coverage
 test/test_report/*
 *.swp
 .idea/*
-
+.coverage
