@@ -1,12 +1,19 @@
-import sys
-import os
-import unittest
+'''
+run tests to collect data:
+coverage run suite.py
 
-script_path = os.path.abspath(__file__)
-sys.path.append(os.path.abspath(script_path))
+show data from tests in terminal:
+coverage report
+
+generate html output:
+coverage html -d test_report
+'''
+
+import unittest
 import test_semester2.test_rna_structures.nussinov_test
 
 suite = unittest.TestLoader()
-suite = suite.loadTestsFromModule(test_semester2.test_rna_structures.nussinov_test)
+suite = suite.loadTestsFromModule(
+    test_semester2.test_rna_structures.nussinov_test)
 
 unittest.TextTestRunner().run(suite)

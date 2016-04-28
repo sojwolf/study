@@ -41,7 +41,8 @@ class Nussinov():
         self._sequence = sequence
         self._sequence_len = len(sequence)
         self._result_sequence = [''] * self._sequence_len
-        self._matrix = [[''] * self._sequence_len for i in range(self._sequence_len)]
+        self._matrix = [[''] * self._sequence_len
+                        for i in range(self._sequence_len)]
 
     # initialization
     def initiate(self):
@@ -95,83 +96,44 @@ class Nussinov():
             s += 1
             t += 1
 
-    def output(self):   # pragma: no cover (excluded from coverage)
+    def output(self):
 
         # copy matrix for output
         output_matrix = deepcopy(self._matrix)
 
         # insert sequence as headline and headcolumn for view
-        output_matrix.insert(0, list(sequence))
+        output_matrix.insert(0, list(self._sequence))
 
-        i = 0
-        for row in output_matrix:
+        for i, row in enumerate(output_matrix):
             if i == 0:
                 row.append('')
             else:
-                row.append(sequence[i-1])
+                row.append(self._sequence[i-1])
             i += 1
 
         # insert index numbers as headline and headcolumn for view
         sequence_index = list(range(1, self._sequence_len + 1))
         output_matrix.insert(0, sequence_index)
 
-        i = 0
-        for row in output_matrix:
+        for i, row in enumerate(output_matrix):
             if i < 2:
                 row.append('')
             else:
                 row.append(i-1)
             i += 1
 
-        # matrix output
-        for row in output_matrix:
+        return output_matrix
+
+    def printOutput(self):   # pragma: no cover (excluded from coverage)
+        output = self.output()
+        for row in output:
             print("\t".join(map(str, row)) + "\n")
 
-    def backTracking(self):
-
-        j = self._sequence_len-1
-        for i in range(0, self._sequence_len-1):
-            if i <= (self._sequence_len / 2):
-                n_value = self._matrix[i][j]
-
-                # unpaired case
-                result = self._matrix[i+1][j]
-
-                if n_value == result:
-                    self._result_sequence[i] = '.'
-                    if i > 0:
-                        self._result_sequence[j] = '.'
-                        j -= 1
-                    # output_matrix[i][j+2] = '[' + output_matrix[i][j+2] + ']'
-                    continue
-
-                # paired cases
-                k_values = self._getK(i, j)
-                for k in k_values:
-                    f_value = self._getBasePairedValue(i, k)
-                    if f_value == 0:
-                        continue
-
-                    inner_value = self._matrix[i+1][k-1]
-                    outer_value = 0 if (k+1 > self._sequence_len-1) else self._matrix[k+1][j]
-                    result = f_value + inner_value + outer_value
-
-                    if result != n_value:
-                        continue
-
-                    self._result_sequence[i] = '('
-                    self._result_sequence[j] = ')'
-                    j -= 1
-                    break
-        print(sequence)
-        print(''.join(self._result_sequence))
-
-    def backTrackingNew(self):
-        output = []
+    def backtracking(self):
+        backtracking = []
         for i in self._sequence:
-            output.append('-')
+            backtracking.append('-')
 
-        # init -> complete strucuture from 0 to n-1
         stack = [[0, self._sequence_len-1]]
 
         while stack != []:
@@ -183,31 +145,39 @@ class Nussinov():
                 continue
 
             if i == j:
-                output[j] = "."
+                backtracking[j] = "."
                 continue
 
             if self._matrix[i][j] == self._matrix[i+1][j]:
-                output[i] = "."
-                stack.append([i+1,j])
+                backtracking[i] = "."
+                stack.append([i+1, j])
                 continue
 
-            k = i+4
-            while k <= j:
-                base_paired_value = self._getBasePairedValue(i,k)
+            for k in range(i + 1 + self._min_count, j+1):
+                base_paired_value = self._getBasePairedValue(i, k)
                 if base_paired_value:
-                    pass
-                k += 1
+                    exprTwo = 0
+                    if j - (k + 1) > -1:
+                        exprTwo = self._matrix[k+1][j]
+
+                    if self._matrix[i][j] == self._matrix[i+1][k-1]\
+                            + exprTwo + base_paired_value:
+                        backtracking[i] = '('
+                        backtracking[k] = ')'
+                        stack.append([i+1, k-1])
+                        stack.append([k+1, j])
+
+        return backtracking
+
+    def printBacktracking(self):   # pragma: no cover (excluded from coverage)
+        backtracking = self.backtracking()
+        print(self._sequence)
+        print(''.join(backtracking))
 
 if __name__ == "__main__":
-    # sequence = 'AGGCAAUGCC'
-    # sequence = 'GGGAAAUCC'
-    sequence = 'GGCAGACUAU'
-    sequence = "AACCCUUUUCCCAA"
-    # sequence = "GACUCCGUGGCGCAACGGUAGCGCGUC"\
-    # "CGACUCCAGAUCGGAAGGUUGCGUGUUCAAAUCACGUCGGGGUCA"
+    sequence = 'CCAAAGGGGAAACC'
     nussinov = Nussinov(sequence)
     nussinov.initiate()
     nussinov.calculate()
-    nussinov.output()
-    nussinov.backTracking()
-    nussinov.backTrackingNew()
+    nussinov.printOutput()
+    nussinov.printBacktracking()
