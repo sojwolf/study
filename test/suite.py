@@ -1,4 +1,7 @@
 '''
+install coverage:
+sudo pip install coverage
+
 run tests to collect data:
 coverage run suite.py
 
