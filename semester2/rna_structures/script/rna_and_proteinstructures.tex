@@ -4,6 +4,8 @@
 \usepackage{color}
 \usepackage{hyperref}
 \usepackage{mathtools}
+\usepackage{graphicx}
+
 \setlength{\parindent}{0em} 
 \hypersetup{
     colorlinks=true,
@@ -81,21 +83,26 @@ durch die Comsky-Hierarchie\footnote{\url{https://de.wikipedia.org/wiki/Chomsky-
 	\item Typ 3 = regular ($N \to \Sigma | \Sigma N$) $\to$ dann immer Hidden Markov Model (HMM) modellierbar
 \end{itemize}
 
-% @todo: Beispiel für Alignments zeichnen
-
+bei Alignments:
+\includegraphics[width=0.7\textwidth]{rna_and_protein_src/1.jpg}
+\\\\
 Erweiterung mit Wahrscheinlichkeit:
 G=(N, $\Sigma$, P, S, $\Omega$)\\
 mit $\Omega$ = Wahrscheinlichkeit für Produktionsregeln\\
 \\
 
 \underline{jetzt auf RNA-Vorhersagen:}\\
-% @todo: Bild einfügen
+\includegraphics[width=0.7\textwidth]{rna_and_protein_src/2.jpg}
 
-scoring scheme: Bewertung von $\sigma$ (paired) = 1, ($\sigma$ ()), $\sigma$ (unpaired) = 0\\
+scoring scheme: Bewertung von 
+$\sigma$ (\includegraphics[width=0.05\textwidth]{rna_and_protein_src/4.jpg}) = 1, 
+($\sigma$ (\includegraphics[width=0.05\textwidth]{rna_and_protein_src/3.jpg})), 
+$\sigma$ (\includegraphics[width=0.05\textwidth]{rna_and_protein_src/5.jpg}) = 0\\
 scoring function: max Basepairs: + (Summe), Anzahl der Strukturen: $\cdot$ (Multiplikation)
 choice function: max Basepairs: max, Anazhl der Strukturen: + (Summe)
 
 % @todo: Bild für Aufteilung der Fälle bei der RNA-Vorhersage
+\includegraphics[width=0.7\textwidth]{rna_and_protein_src/6.jpg}
 
 \subsection{Hidden Markov Model}
 
