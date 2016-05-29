@@ -1,0 +1,94 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[english,german]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\usepackage{geometry}
+\geometry{
+  left=3cm,
+  right=3cm,
+  top=3cm,
+  bottom=4cm,
+  bindingoffset=5mm
+}
+
+\setlength{\parindent}{0em} 
+\hypersetup{
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=black,
+    urlcolor=black
+}
+%Gummi|065|=)
+\title{\Huge\textbf{Bioinformatik von RNA- und Proteinstrukturen}}
+\author{}
+\date{}
+
+% set title of table of contents
+\renewcommand*\contentsname{Inhalt}
+
+% https://www.sharelatex.com/learn
+% http://www.math.ubc.ca/~cautis/tools/latexmath.html
+% http://www.golatex.de/wiki/Kategorie:Befehlsreferenz
+% https://en.wikibooks.org/wiki/LaTeX/Mathematics
+
+\begin{document}
+
+\begin{titlepage}
+
+\maketitle
+\thispagestyle{empty}
+\end{titlepage}
+\newpage
+
+\begin{titlepage}
+\tableofcontents
+\thispagestyle{empty}
+\end{titlepage}
+\newpage
+
+\input{lectures/160523_2/script.tex}
+
+\newpage
+
+\input{lectures/160404/script.tex}
+
+\subsection{Turner-Modell (Nearest-Neighbor-Modell)}
+
+\subsection{Zuker-Algorithmus}
+
+\subsubsection{suboptimales Falten}
+
+\subsection{Wuchty-Algorithmus}
+
+\subsubsection{Wuchty-Backtracking}
+
+\subsection{McCaskill}
+
+\subsection{stochastisches Backtracking}
+
+\subsection{Strukturvorhersagen verbessern}
+
+\subsection{Konsensusstrukturvorhersagen}
+
+\subsection{Wie kann RNA evolvieren?}
+
+\subsubsection{Neutrale Netzwerke}
+
+\subsubsection{SHAPE-Abstraktion}
+
+\subsubsection{Energielandschaften}
+
+\subsubsection{Faltungskinetik}
+
+\subsubsection{Barriers Trees}
+
+\subsubsection{Flooding-Algorithmus}
+
+\subsubsection{Co-transcriptional folding}
+
+\end{document}
