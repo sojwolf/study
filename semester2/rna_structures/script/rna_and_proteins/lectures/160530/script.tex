@@ -1,22 +1,24 @@
 \section{weitere Bindungsarten, erlaubte Basenpaare}
-% Bild 1 einfügen
+ - Hoogsteen base pair\footnote{\url{https://en.wikipedia.org/wiki/Hoogsteen_base_pair}}\\
+\includegraphics[width=0.5\textwidth]{lectures/160530/pix/Edge_Labels.jpg}
+\includegraphics[width=0.5\textwidth]{lectures/160530/pix/440px-NucleotideFaces.jpg}
 
 Jede Base kann mit jeder ihrer Kanten zu jeder Kante jeder Base ein Basenpaar bilden.
-
+\\\\
 \underline{Non-Standard Basepairs:}\\
 Strukturmotive: Pattern von Standard basepairs führt zu speziellen 3D-Struktur (Kink-Turn)\\
 Bifurcations (tripletts meistens)
-12 * 12 * 2 mögliche Basenpaare: Warum?\\
+12 * 12 * 2 mögliche Basenpaare: \textcolor{red}{Warum 288?}\\
 
-Darstellung:
-% Bilder 2 einfügen
-
+Darstellung:\\
+\includegraphics[width=0.85\textwidth]{lectures/160530/pix/geometric-family.jpg}
+\\\\
 \underline{Isoelektrische Basenpaare}\\
 Änderung eines isoelektrischen Basenpaars gegen ein anderes ändert nichts an der Struktur\\
 Listen von isoelektrischen Basenpaaren erstellt von Leontis und Westhof\\
 
-%Bild 3 einfügen
-
+\includegraphics[width=0.5\textwidth]{lectures/160530/pix/hingeterm.jpg}
+\\\\
 Programme: MC-Fold, RNAWolf\\
 
 \section{Proteine}
@@ -32,12 +34,13 @@ Programme: MC-Fold, RNAWolf\\
 Frage: Wie rotieren Aminosäuren, die durch eine Peptidbindung verbunden sind, im Räum?\\
 Stichworte: Cis, Torsionswinkel\\
 
-\underline{Ramachandran Plot:}\\
-% \footnote{\url{https://en.wikipedia.org/wiki/Ramachandran\_plot}}
-allgemeines Beispiel:
-% Bild einfügen
+\underline{Ramachandran Plot:}\footnote{\url{https://en.wikipedia.org/wiki/Ramachandran_plot}}\\
+allgemeines Beispiel:\\
+\includegraphics[width=0.3\textwidth]{lectures/160530/pix/Ramachandran_plot_general_100K.jpg}
 
 \section{Sekundärstrukturelemente}
+%https://de.wikipedia.org/wiki/Sekund%C3%A4rstruktur
+ - Unterscheidung in drei Haupttypen\footnote{\url{https://de.wikipedia.org/wiki/Sekund\%C3\%A4rstruktur}}\\
 \underline{Proteine:}
 \begin{itemize}
 	\item Helix $\alpha$-Helix (häufigstes)
@@ -47,24 +50,22 @@ allgemeines Beispiel:
 	\end{itemize}
 	\item Extended-Faltblatt: mindestens zwei Faltblätter immer zusammen, da dieses sich gegenseitig stabilisieren
 	\begin{itemize}
-		% url einfügen
 		\item parallel, antiparallel
 	\end{itemize}
 	\item Turn (drehen der Backbonerichtung)
 	\item Coil (Rest)
 \end{itemize}
 
-% https://en.wikipedia.org/wiki/Protein_secondary_structure
-drei Helixe: Unterscheidung, was und wie viel zwischen den Wasserstoffbrückenbindungen steht
+drei Helixe: Unterscheidung, was und wie viel zwischen den Wasserstoffbrückenbindungen steht\footnote{\url{https://en.wikipedia.org/wiki/Protein_secondary_structure}}
 \begin{itemize}
 	\item $\alpha-Helix$: 3,6,13-Helix (Helix zwischen 3. und 6. Atom, dazwischen liegen 13 Atome)
 	\item $\pi-Helix$: 4,1,16
 \end{itemize}
 
-%Beispielbild einfügen
+\includegraphics[width=1\textwidth]{lectures/160530/pix/Hydrogen_bridging_in_proteins.jpg}
 
 \subsection{Chou-Fasman (Sekundärstrukturvorhersage von Proteinen)}
- * ca. 50\% Genauigkeit
+ - ca. 50\% Genauigkeit
 \begin{itemize}
 	\item 3 Tabellen mit Scores für $\alpha$ (Helix), $\beta$ (Faltblatt) und t (Turn) für alle Aminosäuren
 	\begin{itemize}
@@ -83,11 +84,11 @@ drei Helixe: Unterscheidung, was und wie viel zwischen den Wasserstoffbrückenbi
 \end{itemize}
 
 \underline{Weiterentwicklung:}\\
- * nicht nur eine Aminosäure sondern gesamte Umgebung anschauen\\
-\underline{GOR-Algorithmus:}\\
-% https://en.wikipedia.org/wiki/GOR_method
- * bis zu 70\% genau
- * es gibt GOR1 bis GOR5, unterschiedliche Berechnungen
+ - nicht nur eine Aminosäure sondern gesamte Umgebung anschauen\\\\
+\underline{GOR-Algorithmus:}\footnote{\url{https://en.wikipedia.org/wiki/GOR_method}}\\
+
+ - bis zu 70\% genau
+ - es gibt GOR1 bis GOR5, unterschiedliche Berechnungen
 \begin{itemize}
 	\item drei Matritzen mit Scores\\
 	20 x 17 Matritze ($\alpha, \beta, turn$)\\
@@ -97,14 +98,16 @@ drei Helixe: Unterscheidung, was und wie viel zwischen den Wasserstoffbrückenbi
 
 Beispiel: ACCTYRAR\underline{R}GHSTFYSW\\
 für R
-$S_{\alpha}=S^{\alpha}(-8,A) + S^{\alpha}(-7,C) + ... S^{\alpha}(8,W)$\\
- * das für alle Sekundärstrukturelemente
-
-\underline{weiterer Algorithmus: SPIDER2}\\
- * ca. 80\% genau\\
- * Winkel zwischen Aminosäuren berechnen\\
- * Surface Accesible Area\\
- * Sekundärstrukturen\\
+$S_{\alpha}=S^{\alpha}(-8,A) + S^{\alpha}(-7,C) + ... + S^{\alpha}(8,W)$\\
+ - das für alle Sekundärstrukturelemente
+\\\\
+\underline{weiterer Algorithmus: SPIDER2}
+\begin{itemize}
+	\item ca. 80\% genau
+	\item Winkel zwischen Aminosäuren berechnen
+	\item Surface Accesible Area
+	\item Sekundärstrukturen
+\end{itemize}
 
 Physikalische Eigenschaften von Aminosäuren:\\
 \begin{itemize}
@@ -117,9 +120,10 @@ Physikalische Eigenschaften von Aminosäuren:\\
 	\item Falblattwahrscheinlichkeit
 	\item zusätzlich mit psi-Blast: PSSM ermitteln (kein Ergebnis für Struktur sondern nur für Sequenz!)
 \end{itemize}
-%
-dann alle diese Parameter in neuronales Netz stecken
-% Bild 4 einfügen
+
+dann alle diese Parameter in neuronales Netz stecken:\\
+% Bild 4 einfügen neuro_net.jpg
+\includegraphics[width=0.7\textwidth]{lectures/160530/pix/neuro_net.jpg}
 \\\\
 w\textbf{eitere Möglichkeit: Meta Server}\\
 \begin{itemize}
