@@ -1,3 +1,50 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[english,german]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\usepackage{geometry}
+\geometry{
+  left=3cm,
+  right=3cm,
+  top=3cm,
+  bottom=4cm,
+  bindingoffset=5mm
+}
+
+\setlength{\parindent}{0em} 
+\hypersetup{
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=black,
+    urlcolor=black
+}
+%Gummi|065|=)
+%\title{\Huge\textbf{Praktikum Verhaltensneurogenetik}}
+\title{\Huge\textbf{$<$Titel$>$}}
+\author{Alexander Scholz}
+\date{$<$Datum$>$}
+
+% set title of table of contents
+\renewcommand*\contentsname{Inhalt}
+
+% https://www.sharelatex.com/learn
+% http://www.math.ubc.ca/~cautis/tools/latexmath.html
+% http://www.golatex.de/wiki/Kategorie:Befehlsreferenz
+% https://en.wikibooks.org/wiki/LaTeX/Mathematics
+
+\begin{document}
+
+\begin{titlepage}
+
+\maketitle
+\thispagestyle{empty}
+\end{titlepage}
+
 \section{Einleitung}
 
 Struktur: Form $\rightarrow$ Funktion\\
@@ -110,3 +157,5 @@ $N_{ij}=max \begin{cases}
                N(i+1, j)\ (ungepaart)\\
                \displaystyle\max_{i+3<k \le j}\ N(i+1, k-1) + N(k+1, j) + F(i,k)\\
 \end{cases}$
+
+\end{document}
