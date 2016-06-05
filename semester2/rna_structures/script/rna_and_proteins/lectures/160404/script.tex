@@ -100,13 +100,30 @@ Experimenteller Nachweis 3D, 4D:
  - Versuch Struktur mit der maximalen Anzahl der Basenpaare zu finden (Grundlage ist Sequenz)
 \\\\
 \underline{Dynamics Programming}\\
- - Initialisierung:
+\textbf{ - Initialisierung:}
 \begin{itemize}
 	\item $N(i,i) = 0$
 	\item $N(i,j)=0\ if\ i<j\le i+3$ (siehe Regel 2)
+	\item $N(j+1, j) = 0$
 \end{itemize}
-
-$N_{ij}=max \begin{cases}
+\textbf{- Brechnung:}\\
+$N(i,j)=max \begin{cases}
                N(i+1, j)\ (ungepaart)\\
                \displaystyle\max_{i+3<k \le j}\ N(i+1, k-1) + N(k+1, j) + F(i,k)\\
 \end{cases}$
+\\\\\\
+mit $F(i,k)= \begin{cases}
+               1\ if\ i,k\ \epsilon\ \{AU, GC, GU\}\\
+               -\infty\ else\\
+\end{cases}$
+\\\\\\
+Basenpaarung mit i und k teilt Sequenz in inneren und äußeren Teil:\\
+\includegraphics[width=0.3\textwidth]{lectures/160404/pix/pairing.jpg}
+\\
+$\rightarrow$ höchste Punktzahl wahrscheinlichste Sekundärstruktur
+\\\\
+Resourcenbedarf:
+\begin{itemize}
+	\item Speicher: $\mathcal{O}(n^2)$
+	\item Prozessor: $\mathcal{O}(n^3)$
+\end{itemize}
