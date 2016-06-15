@@ -1,0 +1,85 @@
+\section{ChIP-Chip und ChIP-Seq}
+ChIP: \textbf{Ch}romatin-\textbf{I}mmuno\textbf{P}recipitation\\
+ChIP-Chip: Chromatin-Immunoprecipitation Chip\\
+ChIP-Seq: Chromatin-Immunoprecipitation DNA-Sequencing
+
+\subsection{Ablauf}
+\subsubsection{Crosslinking}
+Geschieht reversibel zwischen DNA (\textbf{Chromatin}) und rekombinanten Proteinen\\
+\hspace*{10mm}- Formaldehyd (CH2O) vernetzt Base (B) mit Proteinen (P-NH2) quer\\
+\hspace*{10mm}- P-NH2+CH2O $\rightleftharpoons$ PN=CH2+NH2-B $\rightleftharpoons$ PNH-CH2-NH-B\\
+\hspace*{10mm}- Rekombinant: Biotechnologisch hergestellte Proteine aus genetisch\\
+\hspace*{10mm}veraenderten Organismen\\
+
+\subsubsection{Sonication}
+Zerstören und Zerkleinern der Zellen, Zellbestandteile und DNA durch Ultraschall\\
+(Vorher: Waschen der Zellen mit Protease Inhibitor, Lyse + homogenisieren)\\
+\hspace*{10mm}- zeitkritisch $\rightarrow$ Länge bestimmt Grad der Zerkleinerung\\
+\hspace*{10mm}- 200-1000 BP Fragmente im Idealfall\\
+
+\subsubsection{Immunoprezipitation (Selektion mittels Antikörper)}
+\hspace*{10mm}- Antikörper (an Beads, Chip/in Gel) binden an rekombinante Proteine\\
+\hspace*{13mm}oder Protein-TAG (kurze Aminosäuresequenz, markieren Protein)\\
+\hspace*{10mm}-	Aufreinigung:\\
+\hspace*{15mm}$\rightarrow$ Zentrifugation des Prezipitats: Beads+(Protein-DNA) am Boden,\\
+\hspace*{21mm}Zellfragmente/Rest in Lösung\\
+\hspace*{15mm}$\rightarrow$ Abkippen der Lösung\\
+\hspace*{15mm}$\rightarrow$ Aufnehmen des Beadspellets in Puffer, erneut zentrifugieren (x-Mal)\\ 
+\hspace*{15mm}Manchmal noch\\
+\hspace*{15mm}$\rightarrow$ DNase Verdau der DNA in Lösung\\
+\hspace*{15mm}$\rightarrow$ Aufheben der DNA in Lösung, als total-Chromatin-Probe
+
+\subsubsection{Reverse Immunoprezipitation}
+Durch Aufreinigungsschritte sind Beads/Gel/Chip idealerweise frei von Zellfragmenten/ungebundener DNA.\\Umkehren der IP mit Elutionspuffer$\rightarrow$ Antikörper von DNA+Proteine trennen\\
+$\rightarrow$Salzgehalt und PH-Wert an Rückreaktion angepasst
+
+\subsubsection{Reverse Crosslinking}
+\hspace*{10mm}-	Thermische Zerstörung der Bindung zw. Protein und DNA\\
+\hspace*{10mm}-	Proteinase K und RNase\\
+\hspace*{10mm}-	Extraktion der DNA\\
+
+\subsubsection{Auswertung}
+\hspace*{10mm}\textbf{Chiphybridisierung}\\
+\hspace*{20mm}- Hybridisierung der DNA an Microarray\\
+\hspace*{20mm}- Färbung der DNA\\
+\hspace*{20mm}- Messung der Farbintensität\\
+$\rightarrow$\textit{\textbf{mit dem ChIP Background kann ich nichts anfangen...}}$\leftarrow$\\
+\hspace*{10mm}\textbf{Sequencing}\\
+\hspace*{20mm}Hochdurchsatzsequenzierung der aufgereinigten DNA.\\
+\hspace*{20mm}$\rightarrow$DNA extrahieren$\rightarrow$DNA fragmentieren$\rightarrow$Primer an Fragmente$\rightarrow$Sequenzierung\\
+\hspace*{20mm}$\rightarrow$Herausrechnen der Primer (idealerweise kennt man sie)$\rightarrow$\\
+\hspace*{20mm}Quality control$\rightarrow$Phred-score Berechnung (Güte der erkannten\\
+\hspace*{20mm}Nukleobase)$\rightarrow$Cutoff bei zu niedrigem Phred-score$\rightarrow$Mapping des\\
+\hspace*{20mm}sequenzierten Teilstücks auf Genom
+
+\subsection{Probleme/Fehler}
+\textbf{Sonication}\\
+\hspace*{10mm}- Größe der Fragmente abhängig von Ultraschalleinsatz – zeitkritisch!\\
+\hspace*{10mm}- Kürzere und längere Fragmente können Informationen enthalten
+\textbf{Cross-Linking}\\
+\hspace*{10mm}\textbf{FN:} Protein an DNA gebunden, aber kein Cross-Linking\\
+\hspace*{10mm}\textbf{FP:} Proteine, die sehr nahe an der DNA sind, aber ungebunden, werden\\ \hspace*{19mm}auch cross linked\\
+\textbf{Immunoprecipitation}\\
+\hspace*{10mm}\textbf{FP:} Mangelnde Reinheit der rekombinanten Proteine; Spezifität der\\
+\hspace*{19mm}heterophilen Antikörper zu gering\\
+\hspace*{19mm}Aufreinigung führt zu \textbf{FP} und \textbf{FN}\\
+\textbf{Chip}\\
+\hspace*{10mm}\textbf{FN:} Hybridisierung nicht effektiv genug
+
+\subsection{Antikörper}
+\begin{tabular}{cc}
+  \textbf{polyclonal} & \textbf{monoclonal}\\
+  Peptide in Ratte/Maus geimpft & Peptide in Ratte/Maus geimpft\\
+  $\Downarrow$ & $\Downarrow$\\
+  extrahieren der B-Lymphozyten aus Serum & extrahieren der B-Lymphozyten aus Milz\\
+  $\Downarrow$ & $\Downarrow$\\
+  Extrahieren der Antikörper &Fusionierung der B-Lymphozyten mit\\ 
+   aus den Lymphozyten & Plasmazellen aus Myelom\\
+   & (Krebszelle - 'unsterblich')\\
+  $\Downarrow$ & $\Downarrow$\\
+  Antikörper & Hybrid erzeugt (unsterblich + Antikörper)\\
+  & $\Downarrow$\\
+  & Testen der Hybride auf Antigene\\
+  & $\Downarrow$\\
+  & ernten spezifischer Antikörper
+\end{tabular}
