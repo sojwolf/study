@@ -6,3 +6,9 @@ test/test_report/*
 .coverage
 semester2/rna_structures/script/rna_and_proteins/rna_and_protein_src/*
 tmp.tex
+*.log
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
