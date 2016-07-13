@@ -1,0 +1,48 @@
+\subsection{Wuchty-Backtrack mit Nussinov-Algorithmus als Forward-Algorithmus}
+\begin{itemize}
+\item[--]gesucht: Strukturen mit mind. $x$ Basenpaaren
+\item[--]$x=max-\Delta$ \\ z.B. $\Delta=1 \rightarrow x=3...$ wir suchen alle Strukturen mit mind. 3 Basenpaaren
+\item[--]als Datenstruktur wird ein Stack verwendet
+	\begin{itemize}
+	\item[]push (puts element on the stack)
+	\item[]pop (takes top element from the stack)
+	\end{itemize}
+\item[--]Jeder Eintrag $D$ auf dem Stack enth\"alt:
+	\begin{itemize}
+	\item[]$I$ - Intervall
+	\item[]$BP$ - Anzahl an Basenpaaren
+	\item[]$S$ - Struktur
+	\end{itemize}
+\end{itemize}
+\begin{enumerate}
+\item\textbf{Forward-Algorithmus durchführen} $\rightarrow$ outputs $N(i,j)$
+\item\textbf{Backtrack:}
+	\begin{itemize}
+		\item[]$push ([1,n], 0, 0)$
+		\item[]$while$ (stack not empty)
+		\begin{itemize}
+			\item[•]Nimm Intervall $a$ aus $I$
+			\item[•]Bereche die Anzahl an möglichen Basenpaaren in den anderen Intervallen
+			\item[•]$Z=BP + \displaystyle\sum_{b\neq a \in I}\ N[b] \rightarrow$ in $a$ mind. $x-Z$ Basenpaare
+			\item[•]$ if (N(i, j-1)\ge x-Z)$
+			\begin{itemize}
+				\item[--]$a' = [i, j-1]$
+				\item[--]push $([a',b],BP,S)$
+			\end{itemize}
+			\item[•]$else$ output
+			\item[•]$for (i\le k < j-3)$
+			\begin{itemize}
+				\item[--]$if (N(k+1,j-1)+N(i,k-1)+1\ge x-Z)$
+				\begin{itemize}
+				\item[]$c=k+1, j-1$
+				\item[]$d=(i, k-1)$
+				\item[]$BP'=BP+1$
+				\item[]$S'=S\cup {k,j}$
+				\item[]$push (c,d,BP',S')$
+				\end{itemize}
+				\item[--]$else$ output
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+\end{enumerate}
+Das in der Vorlesung berechnete Beispiel wird hier nicht aufgeführt.

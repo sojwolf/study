@@ -11,3 +11,4 @@ tmp.tex
 *.log
 *.toc
 *.gz
+*.synctex.gz
