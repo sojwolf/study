@@ -93,8 +93,8 @@ Die Energie eines Multi-Loops ist abh\"angig von:
 			\end{cases}$
 
 	\item[] $C(i,j)= min \begin{cases}
-               H(i,j)\\
-               \displaystyle\min_{i<k<l<j}\ J(ij,kl) + C(k, l)\\
+               \textit{H}(i,j)\\
+               \displaystyle\min_{i<k<l<j}\ \textit{I}(ij,kl) + C(k, l)\\
                 \displaystyle\min_{i<u<l-5}\ M(i+1,u-1) + M^1(u, j-1) + a\\
                 \end{cases}$
 	\item[] $M(i,j)= min \begin{cases}
@@ -109,13 +109,14 @@ Die Energie eines Multi-Loops ist abh\"angig von:
 \end{itemize}
 \paragraph{}
 \begin{itemize}
+	\item[]$H$ und $I$ sind gegebene Energietabellen für Hairpin und Interior-Loops
 	\item[]$a$ - Strafe f\"ur schließen eines Multi-Loops
 	\item[]$b$ - Strafe f\"ur inneres Basenpaar in einem Multi-Loop
 	\item[]$c$ - Strafe f\"ur ungepaarte Base in einem Multi-Loop
 \end{itemize}
 \paragraph{}
  \textbf{Grafische Darstellung des Zuker-Algorithmus}\\\\
-\includegraphics[scale=0.55]{lectures/160404_2/pix/zuker}
+\includegraphics[scale=0.55]{lectures/160404_2/pix/zuker_lorenz}\\
 \paragraph{}
  \textbf{Komplexit\"at}
 \begin{itemize}
