@@ -11,12 +11,7 @@ Der unspr\"ungliche Nussinov-Algorithmus bestimmt die maximal m\"ogliche Anzahl 
 \begin{itemize}
 	\item[]$Z(i,j)=+ \begin{cases}
                Z(i+1, j)\ (ungepaart)\\
-               \displaystyle\sum_{i+3<k \le j}\ Z(i+1, k-1) * Z(k+1, j) * F(i,k)\\
-\end{cases}$
-
-	\item[] mit $F(i,k)= \begin{cases}
-               1\ if\ i,k\ \epsilon\ \{AU, GC, GU\}\\
-               -\infty\ else\\
+               \displaystyle\sum_{i+3<k \le j}\ Z(i+1, k-1) * Z(k+1, j) * 1\\
 \end{cases}$
 \end{itemize}
 
