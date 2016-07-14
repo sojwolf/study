@@ -1,0 +1,61 @@
+%Vorlesung 3- 11.04.2016
+\subsubsection{Backtracking von Zuker}
+Stapel unafgekl\"arter Strukturen: $i$, $j$ und Typ
+\begin{itemize}
+\item[]$F(1,n)$ on stack
+\item[]\textit{if} $F(i,j)=F(i, j-1)$ \textbf{push} F(i, j-1) on stack
+\item[]\textit{else} $j$ is paired
+	\begin{itemize}
+	\item[]suche $F(i, j)=C(k,j) + F(i,k-1)$ $\rightarrow$ \textbf{push} $F(i, k-1)$ and $C(k, j)$ on stack
+	\end{itemize}
+\item[]$if C(i,j)=H(i,j) \rightarrow i, j$ sind Basenpaar $\rightarrow$ \textbf{pop}
+\item[]$else$ suche $k$ und $l$, sodass $C(i,j) = I(i,j,k, l) + C(k,l) \rightarrow  i, j$ sind Basenpaar \textbf{pop}, \textbf{push} $C(k,l)$ on stack
+\item[]$else$ suche $u$, sodass $C(i,j)=M(i+1,u-1)+M^1(u,j-1)+a  \rightarrow$ \textbf{pop}  $i, j$ als Basenpaar und $M(i+1,u-1)$
+\item[]$if M(i,j-1)=M(i,j) \rightarrow$ \textbf{push} $M(i,j-1)$ on stack
+\item[]$else$ suche $k$, sodass $M(i,j)=M(i, k-1)+C(k,j)+b \rightarrow$ \textbf{push} $C(k,j)$ and $M(i,k-1)$ on stack
+\item[]$if M^1(i,j) = C(i,j)+b \rightarrow$ \textbf{push} $C(i,j)$ on stack
+\item[]$if  M^1(i,j) = M^1(i,j-1)+c \rightarrow$ \textbf{push} $M^1(i,j-1)$ on stack
+\end{itemize}
+
+
+\subsection{Suboptimale Strukturen}
+
+\subsubsection{ Zuker-Suboptimals (\textit{1989})}
+Berechnet suboptimale Strukturen, indem für jedes \textit{m\"ogliche} Basenpaar die beste Struktur, insgesamt quadratisch viele Strukturen, berechnet wird. Dies wir durch ein Verdoppeln der Input-Sequenz erreicht. Die beiden Sequenzen werden dann wie folgt aneinander geh\"angt:
+\begin{itemize}
+\item[]$1, .. .,n, n+1, ..., 2n$
+\item[]Optimale Energie f\"ur $BP(i,j)=C(i,j)+C(j, n+i)$
+\end{itemize}
+Wird der Zuker-Algorithmus auf diese verdoppelte Sequenz durchgef\"uhrt erh\"alt man Ergebnisse...\textbf{ Wer kann's erkl\"aren?}
+
+\subsubsection{Wuchty-Algorithmus}
+\begin{enumerate}
+\item\textbf{Forward-Algorithmus} kann Nussinov- oder Zuker-Algorithmus sein
+\item\textbf{Backtracking}:\\
+Stapel enth\"alt mehr Information als bei Zuker:  i, j, Typ, Stuktur und $\Delta\varepsilon$ (Energie, die noch verf\"ugbar ist)
+\end{enumerate}
+\paragraph{Thermodynamik von Molek\"ulen}
+\begin{itemize}
+\item[]viele Zust\"ande m\"oglich
+\item[]Die Boltzmann-Statistik besagt, dass die Wahrscheinlichkeit $p$ einen Zustand der Energie $E$ mit einem Teilchen besetzt zu finden, proportional ist zum Boltzmann-Faktor:
+	\begin{itemize}
+	\item[$\circ$]$Bolzmannfaktor=e^{-\frac{E}{k_B\*T}} $, mit Energie $E$, Boltzmannkonstante $k_B$ und der absoluten Temperatur $T$
+	\item[$\circ$]$p(E)\propto e^{-\frac{E}{k_B\*T}}$, $\beta=\frac{1}{k*T}$
+	\item[$\circ$]f\"ur eine Struktur $S$ und eine Energie $E(S)$ gilt:
+	\item[$\circ$]$p(S)\propto e^{-\beta*E(S)}$
+	\item[$\circ$]$\sum p(S) = 1 \rightarrow$ Summe aller Wahrscheinlichkeiten aller Strukturen
+	\item[$\circ$]\begin{equation}
+	p(S)= \frac{e^{-\beta*E(S)}}{\sum \limits_{s'=s1}^{sn} e^{-\beta*E(S)}}
+	\end{equation}wobei \begin{equation}
+	\sum \limits_{s'=s1}^{sn} e^{-\beta*E(S)}=Z
+	\end{equation}Z=\textbf{Zustandssumme} (partition function)
+	\item[$\circ$] D.h., dass eine Wahrscheinlichkeit f\"ur jede Eigenschaft $x$ (z.B. spezifisches Basenpaar) meines Molek\"uls wie folgt berechnet werden kann: \begin{equation}
+	p(x)=\frac{\sum \limits_{x}  e^{-\beta*E(x)}}{Z}
+	\end{equation}
+	wobei die Summierung über alle Strukturen l\"auft, die diese Eigenschaft $x$ besitzen
+	\end{itemize}
+\end{itemize}
+
+
+
+

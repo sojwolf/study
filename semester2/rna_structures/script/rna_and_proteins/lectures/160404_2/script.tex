@@ -25,6 +25,7 @@ Der Zuker-Algorithmus berechnet die optimale Sekundärstruktur einer RNA-Sequenz
 
 \subsubsection{Turner-Modell (Nearest-Neighbor-Modell)}
 Das Turner-Modell beschreibt die verschieden Untereinheiten/Schleifen eines RNA-Molek\"uls wie folgt:\\\\
+\includegraphics[scale=0.6]{lectures/160404_2/pix/nn-model}\\
 \includegraphics[scale=0.4]{lectures/160404_2/pix/turner}
 
 \begin{itemize}
@@ -36,12 +37,12 @@ Das Turner-Modell beschreibt die verschieden Untereinheiten/Schleifen eines RNA-
 	\includegraphics[scale=0.4]{lectures/160404_2/pix/turner2}
 	
 	\begin{itemize}
-	\item 0 Basen ungepaart: stack\\
-	\includegraphics[scale=0.4]{lectures/160404_2/pix/stack}\\
-	\item auf einer Seite eine Base ungepaart: buldge\\
-	\includegraphics[scale=0.4]{lectures/160404_2/pix/buldge1}\\
-	\item auf beiden Seiten eine Base ungepaart\\
-	\includegraphics[scale=0.4]{lectures/160404_2/pix/buldge2}\\
+	\item 0 Basen ungepaart: stack
+	\includegraphics[scale=0.3]{lectures/160404_2/pix/stack}
+	\item auf einer Seite eine Base ungepaart: buldge
+	\includegraphics[scale=0.3]{lectures/160404_2/pix/buldge1}
+	\item auf beiden Seiten eine Base ungepaart
+	\includegraphics[scale=0.3]{lectures/160404_2/pix/buldge2}
 	\end{itemize}
 	
 	\item $>$2 Basenpaare:  multi-loop
@@ -71,7 +72,7 @@ Die Energie eines Multi-Loops ist abh\"angig von:
 	\item Anzahl der schließenden Basenpaaren
 \end{itemize}
 
-\subsubsection{Der Zuker-Algorithmus}
+\subsubsection{Der Zuker-Algorithmus (\textit{1981})}
 \begin{itemize}
 \item[--]verwendet das Turner-Modell
 \item[--]minimiert freie Energie: \textbf{minimum free energy} (mfe)
@@ -116,7 +117,7 @@ Die Energie eines Multi-Loops ist abh\"angig von:
 \end{itemize}
 \paragraph{}
  \textbf{Grafische Darstellung des Zuker-Algorithmus}\\\\
-\includegraphics[scale=0.55]{lectures/160404_2/pix/zuker_lorenz}\\
+\includegraphics[scale=0.55]{lectures/160404_2/pix/zuker_lorenz.png}\\
 \paragraph{}
  \textbf{Komplexit\"at}
 \begin{itemize}
