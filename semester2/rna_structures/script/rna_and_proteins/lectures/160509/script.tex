@@ -1,11 +1,43 @@
-\section{Konsensusstrukturvorhersage - Komparative Analyse}
+\section{Verbesserung von Strukturvorhersagen}
+Im folgenden sind mehrere Faktoren aufgeführt, die zur Optimierung der Strukturvorhersage bzw. die Vollständigkeit der Strukturvorhersage zeigen. Weiterhin kommt die komparative Analyse von RNA-Strukturen mit hinein, die aufgrund der evolutionär wichtigen Struktur-Funktions-Beziehung wichtige Aussagen über Strukturen geben können. 
 
-Untersuchung mehrere RNA-Moleküle mit ähnlicher bis gleicher Struktur, da diese möglicherweise miteinander verwandt sind. \\
-$\rightarrow$ Funktionsvorhersage \\
-$\rightarrow$ Zuordnung von RNA-Klassen \\
-$\rightarrow$ Motivsuche
+\subsection{Energieparameter}
+Das Turner-Modell führte zur Erzeugung von fast 100 Parametern, die zur Ermittlung der thermodynamischen Energie eines RNA-Moleküls relevant ist zu bestimmen. \\
+Andronescu et al. (2007) \footnote{Andronescu,M; Condon,A; Hoos, H; Mathews, D; Murphy, KP(2007): Efficient parameter estimation for RNA secondary structure prediction. Bioinformatics. 2007;23(13):19-28.} entwickelten eine "Constraint Generation"-Methode bei der die Schätzung der Energieparameter auf Grundlage von bekannten thermodynamischen Datenbanken errechnet werden. \\
+Hierbei werden zunächst die Energiewerte zur Berechnung der besten Struktur genutzt und durch ein Optimierungsproblem über mehrere Iterationsschritte verbessert, so dass die Energie minimal wird.
 
-\subsection{RNAaliFold- zuerst alignen, dann falten}
+\subsection{Dangling ends}
+\begin{itemize}
+\item die ungepaarten Basen am Ende eines Stacks, werden als Dangling Ends bezeichnet.
+\item aufgrund ihre Instabilität als Einzelsträngige Teilsequenz sind diese Bereiche recht flexibel und können auf benachbarte Basen(-paare) umspringen um einen stabileren Zustand zu erreichen.
+\item 3'-Dangling Ends sind stabiler als 5'-Dangling Ends
+\item Dangling Ends werden als Ursache für coaxial Stacking diskutiert (Verdrehen und Rotation bestimmter Stacks zu anderen in einer Struktur)
+\item in der Berechnung werden diese Dangling Ends ebenfalls mit einem Strafbetrag verrechnet (Dangling-End-Parameter im Turner-Parameter-Modell)
+\end{itemize}
+
+\subsection{Constraint Folding}
+Man unterscheidet zwei Typen von Constraints (Beschränkungen):
+\begin{itemize}
+\item[Hard Constraints] Es darf keine Basenpaarung einer anderen widersprechen. Entweder eine Base i ist ungepaart oder ist nach links oder nach rechts mit einer anderen verbunden. 
+\item[Soft Constraints] Ergeben sich aus den Energiescorematrizen der Strukturvorhersage mit McCaskill (oder Zuker) und zeigen die Wahrscheinlichkeit einer bestimmten positionsabhängigen Basenpaarung an
+\end{itemize}
+
+Experimentell kann durch Methoden, wie PARS (Hochdurchsatz-Sequenzierung) bestimmt werden an welchen Positionen Basenpaarung vorliegen. Hierfür wird ein bioenzymatischer Verdau durchgeführt bei dem entweder doppelsträngige Stellen oder einzelsträngige Stellen zersetzt werden.
+
+\subsection{Konsensusstrukturvorhersage - Komparative Analyse}
+
+In der Evolutionsbiologie geht man von einem Struktur-Funktions-Beziehung konservierter Merkmale aus. Das bedeutet: Funktional wichtige Sequenzbereiche sind in der DNA konserviert. \\
+Für die RNA-Strukturvorhersage ist jedoch zu beachten, dass auch sich unterscheidende Sequenzen strukturell ähneln können und somit deren Sekundärstruktur evolutionär konserviert ist. \\
+Betrachtet man nun einen Datensatz von RNA-Sequenzen kann über Alinierung der Sequenzen und/oder der Sekundärstrukturen die Ähnlichkeit dieser Sequenzen betrachtet werden. Es ist möglich, dass RNA-Moleküle mit ähnlicher bis gleicher Struktur miteinander verwandt sind. \\
+$\rightarrow$ komparative Analyse:
+Es gibt drei Hauptmethoden, die zur Konsensusstrukturvorhersage genutzt werden: 
+\begin{itemize}
+\item Funktionsvorhersage \\
+\item Zuordnung von RNA-Klassen \\
+\item Motivsuche
+\end{itemize}
+
+\subsubsection{RNAaliFold- zuerst alignen, dann falten}
 $\rightarrow$ multiples Sequenzalignment (z.B. Needleman-Wunsch) \\
 $\rightarrow$ generalisierte Bestimmung einer RNA-Struktur \\
 
@@ -59,7 +91,7 @@ $\rightarrow$ Komplexität: $\Omega(n^{3}m)$ \\
 Problem: Es werden nur Konsensussequenzen gefalten. Somit ist nur Allgemein eine Faltung für alle Sequenzen vorliegend. \\
 Somit nur sinnvoll, wenn zum einen ein Alignment möglich ist und wenn die Sequenzen sehr ähnlich zueinander sind.
 
-\subsection{Sankoff-Algorithmus - gleichzeitiges Alignen und Falten}
+\subsubsection{Sankoff-Algorithmus - gleichzeitiges Alignen und Falten}
 
 \textbf{Programm:} locarna \\
 
@@ -145,7 +177,7 @@ M^1(i,j-1;k,l-1) + A(j-1,j;l-1,l)
 \end{equation}
 $\rightarrow$ \textbf{Komplexität:} $\Omega(Zeit) = \Omega(n^6) \ ; \ \Omega(Memory) = \Omega(n^4)$ $\rightarrow$
 
-\subsection{TREEforester - zuerst falten, dann alignen}
+\subsubsection{TREEforester - zuerst falten, dann alignen}
 \begin{itemize}
 \item Wie alignt man gefaltete RNA-Strukturen? \\
 Nach welchen Kriterien wurde die scheinbar beste Faltung gewählt? $\rightarrow$ Tree-Editing (Bestrafung von strukturellen Mismatches)
@@ -164,7 +196,6 @@ Nach welchen Kriterien wurde die scheinbar beste Faltung gewählt? $\rightarrow$
 \end{itemize}
 
 \textbf{Tree-Alignment:} Erzeugung eines common Super-Trees
-
 
 \subsection{lokales Falten}
 
@@ -194,7 +225,7 @@ NOTHING \ (else)
 \item Dinukleotidshuffling \\ $\rightarrow$ klärt Frage, wie stabil die Struktur gegenüber ähnlichen Strukturen ist \\ $\rightarrow$ Annahme: ähnliche Sequenzen sollten gleichen Dinukleotidinhalt haben 
 \end{itemize}
 
-\subsection{RNA-RNA-Interaktionen (RNA-Interferenz)}
+\section{RNA-RNA-Interaktionen (RNA-Interferenz)}
 Durch das Falten von zwei RNA-Molekülen kommt es zu sogenannten RNA-RNA-Interaktionen oder RNA-Interferenzen (kurz: RNAi). \\
 RNAi ermöglicht eine spezifische Steuerung von Wechselwirkungen. \\
 
@@ -235,7 +266,7 @@ Dadurch können geschlossene Strukturen definiert werden:
 $\rightarrow$ Damit kann die RNA-RNA-Interaktion in feste Bereiche vollständig zerlegt werden, die entweder geschlossene Strukturen sind oder aus rein intramolekulare Sequenzen bestehen (Reidys, Stadler, 2009) \\
 
 Die Komplexität kann auf $0(n^3)$ durch Zusammenfassen von Termen reduziert werden. Hierbei werden beim Forward- und beim Backward-McCaskill-Algorithmus zusätzliche Matritzen eingespeichert. Die Backward-Matrix dient der Bestimmung der Zugänglichkeit der interagierenden Moleküle.
-\subsubsection{RNA miteinander falten und konkatenieren}
+\subsection{RNA miteinander falten und konkatenieren}
 
 Im Allgemeinen geht man wie folgt vor um solche RNAi zu bestimmen:
 \begin{itemize}
@@ -256,7 +287,7 @@ Die Wahrscheinlichkeit einer Dimerbildung zweier RNA-Moleküle ist jedoch konzen
 
 \textbf{Anmerkung:} Die Betrachtung von mehr als zwei Molekülen ist möglich, aber deutlich rechen- und speicherintensiver, da die Zahl der Rekombinationen stark ansteigt. Ein nutzbarer Algorithmus ist von Dirks et al. 
 
-\subsubsection{RNAplex}
+\subsection{RNAplex}
 
 \textbf{RNAplex} ist ein Alignemnt-ähnlicher Ansatz zur Untersuchung   von RNAi \\
 Die Interaktionsenergie kann hier schneller bestimmt werden ($O(nmL^2)$). Da die Energie von Interiorloops nicht logarithmisch betrachtet wird sondern in einer linearen Regression (Vernachlässigung von Assymetrien, somit aber auch Vernachlässigung der RNA-Struktur an sich).
