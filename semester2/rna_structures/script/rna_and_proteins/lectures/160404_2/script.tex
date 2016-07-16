@@ -10,11 +10,16 @@ Der unspr\"ungliche Nussinov-Algorithmus bestimmt die maximal m\"ogliche Anzahl 
 \textbf{Berechnung:}
 \begin{itemize}
 	\item[]$Z(i,j)=+ \begin{cases}
-               Z(i+1, j)\ (ungepaart)\\
-               \displaystyle\sum_{i+3<k \le j}\ Z(i+1, k-1) * Z(k+1, j) * 1\\
+               Z(i+1, j)\ (i ungepaart)\\
+               \displaystyle\sum_{i+3<k \le j}\ Z(i+1, k-1) * Z(k+1, j) * 1 (i gepaart)\\
 \end{cases}$
 \end{itemize}
 
+ -  Anzahl der Strukturen wächst exponentiell\\
+$\rightarrow$ Ansatz zu einfach\\
+$\rightarrow$ schlechte Vorhersage (in Wahrheit Energieabhängig)\\
+\\
+\underline{Was stabilisiert RNA-Sruktur?} Interaktionen der aromatischen Ringe, die beim \textbf{Stapeln} auftreten
 
 \subsection{Zuker-Algorithmus}
 

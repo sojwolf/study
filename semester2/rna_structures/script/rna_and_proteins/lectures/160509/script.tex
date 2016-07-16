@@ -15,6 +15,17 @@ Hierbei werden zunächst die Energiewerte zur Berechnung der besten Struktur gen
 \item in der Berechnung werden diese Dangling Ends ebenfalls mit einem Strafbetrag verrechnet (Dangling-End-Parameter im Turner-Parameter-Modell)
 \end{itemize}
 
+\subsection{Training der Energieparameter}
+Andronescu:
+\begin{itemize}
+	\item Set von bekannten Strukturen aus Datenbank
+	\item Turner-Parameter (thermodynamische Parameter)
+	\item Strukturvohersage: perturbieren (verändern, stören) der Parameter, versuche den Abstand zwischen vorhergesagten und richtigen Strukturen zu minimieren
+	\item update Parameter
+\end{itemize}
+
+\textbf{Problem:} Training nur auf bekannten Daten, für unbekannte Strukturen nicht immer besser
+
 \subsection{Constraint Folding}
 Man unterscheidet zwei Typen von Constraints (Beschränkungen):
 \begin{itemize}
@@ -23,8 +34,29 @@ Man unterscheidet zwei Typen von Constraints (Beschränkungen):
 \end{itemize}
 
 Experimentell kann durch Methoden, wie PARS (Hochdurchsatz-Sequenzierung) bestimmt werden an welchen Positionen Basenpaarung vorliegen. Hierfür wird ein bioenzymatischer Verdau durchgeführt bei dem entweder doppelsträngige Stellen oder einzelsträngige Stellen zersetzt werden.
+\\\\
+\textbf{RNA $\rightarrow$ Struktur (Funktion) $\rightarrow$ evolutionär konserviert (Verwandschaft)}
 
-\subsection{Konsensusstrukturvorhersage - Komparative Analyse}
+- es ist möglich Struktur und damit Funktion zu konservieren auch wenn die Sequenz verändert wird
+
+\begin{itemize}
+	\item konsistente Mutation: G-C $\rightarrow$ G-U
+	\item kompensatorische Mutation: Mutation an C zieht Mutation an G mitsich
+\end{itemize}
+
+\underline{$\Rightarrow$ Ziel:} Zusätzliche Informationsebene durch auffinden von konsistenten und Kompensatorischen Mutationen
+\\\\
+$\Rightarrow$ benötigt Set von n Sequenzen, die die gleiche Struktur haben
+\\\\
+\underline{nun drei Möglichkeiten:}
+$\rightarrow$ prinzipiell: Alignments mit Sekundärstrukturvorhersage kombinieren
+\begin{enumerate}
+	\item zuerst Strukturvorhersage, dann Aligenment von Strukturen (Tree Alignment)
+	\item simultan alignen und Strukturen vorhersagen (Sankoff ($O(n^6)$))
+	\item zuerst alignen und dann Strukturen der Alignments vorhersagen (RNA Alifold)
+\end{enumerate}
+
+\section{Konsensusstrukturvorhersage - Komparative Analyse}
 
 In der Evolutionsbiologie geht man von einem Struktur-Funktions-Beziehung konservierter Merkmale aus. Das bedeutet: Funktional wichtige Sequenzbereiche sind in der DNA konserviert. \\
 Für die RNA-Strukturvorhersage ist jedoch zu beachten, dass auch sich unterscheidende Sequenzen strukturell ähneln können und somit deren Sekundärstruktur evolutionär konserviert ist. \\
@@ -37,7 +69,7 @@ Es gibt drei Hauptmethoden, die zur Konsensusstrukturvorhersage genutzt werden:
 \item Motivsuche
 \end{itemize}
 
-\subsubsection{RNAaliFold- zuerst alignen, dann falten}
+\subsection{RNAaliFold- zuerst alignen, dann falten}
 $\rightarrow$ multiples Sequenzalignment (z.B. Needleman-Wunsch) \\
 $\rightarrow$ generalisierte Bestimmung einer RNA-Struktur \\
 
@@ -91,7 +123,7 @@ $\rightarrow$ Komplexität: $\Omega(n^{3}m)$ \\
 Problem: Es werden nur Konsensussequenzen gefalten. Somit ist nur Allgemein eine Faltung für alle Sequenzen vorliegend. \\
 Somit nur sinnvoll, wenn zum einen ein Alignment möglich ist und wenn die Sequenzen sehr ähnlich zueinander sind.
 
-\subsubsection{Sankoff-Algorithmus - gleichzeitiges Alignen und Falten}
+\subsection{Sankoff-Algorithmus - gleichzeitiges Alignen und Falten}
 
 \textbf{Programm:} locarna \\
 
@@ -177,7 +209,7 @@ M^1(i,j-1;k,l-1) + A(j-1,j;l-1,l)
 \end{equation}
 $\rightarrow$ \textbf{Komplexität:} $\Omega(Zeit) = \Omega(n^6) \ ; \ \Omega(Memory) = \Omega(n^4)$ $\rightarrow$
 
-\subsubsection{TREEforester - zuerst falten, dann alignen}
+\subsection{TREEforester - zuerst falten, dann alignen}
 \begin{itemize}
 \item Wie alignt man gefaltete RNA-Strukturen? \\
 Nach welchen Kriterien wurde die scheinbar beste Faltung gewählt? $\rightarrow$ Tree-Editing (Bestrafung von strukturellen Mismatches)
