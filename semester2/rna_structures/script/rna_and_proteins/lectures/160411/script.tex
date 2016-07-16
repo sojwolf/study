@@ -3,10 +3,10 @@
 Stapel unafgekl\"arter Strukturen: $i$, $j$ und Typ
 \begin{itemize}
 \item[]$F(1,n)$ on stack
-\item[]\textit{if} $F(i,j)=F(i, j-1)$ \textbf{push} F(i, j-1) on stack
+\item[]\textit{if} $F(i,j)=F(i+1, j)$ \textbf{push} F(i+1, j) on stack
 \item[]\textit{else} $j$ is paired
 	\begin{itemize}
-	\item[]suche $F(i, j)=C(k,j) + F(i,k-1)$ $\rightarrow$ \textbf{push} $F(i, k-1)$ and $C(k, j)$ on stack
+	\item[]suche $F(i, j)=C(i,k) + F(k+1,j)$ $\rightarrow$ \textbf{push} $C(i, k)$ and $F(k+1, j)$ on stack
 	\end{itemize}
 \item[]$if C(i,j)=H(i,j) \rightarrow i, j$ sind Basenpaar $\rightarrow$ \textbf{pop}
 \item[]$else$ suche $k$ und $l$, sodass $C(i,j) = I(i,j,k, l) + C(k,l) \rightarrow  i, j$ sind Basenpaar \textbf{pop}, \textbf{push} $C(k,l)$ on stack
